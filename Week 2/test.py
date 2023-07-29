@@ -1,0 +1,1 @@
+# checking that git is working correctly after a migration
