@@ -3,6 +3,7 @@
 {% block body %}
     <h1>Add Task</h1>
     <form action="{% url 'tasks:add' %}" method="post">
+        <!-- TQ: How do CSRF tokens work here? Why is it that just having one in the form will make it work? And why don't I have to import anything to make this work? -->
         {% csrf_token %}
         {{ form }}
         <input type="submit">
