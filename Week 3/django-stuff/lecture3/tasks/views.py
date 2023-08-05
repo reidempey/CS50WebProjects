@@ -10,10 +10,11 @@ class NewTaskForm(forms.Form):
     task = forms.CharField(label="New Task")
     # priority = forms.IntegerField(label="Priority", min_value=1, max_value=5)
 
-
+# TQ: How are these requests sent into this function?
 def index(request):
     if "tasks" not in request.session:
         request.session["tasks"] = []
+    # TQ: How does the render function really work?
     return render(request, "tasks/index.html", {
         "tasks": request.session["tasks"]
     })
