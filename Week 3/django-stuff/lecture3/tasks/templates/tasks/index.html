@@ -9,5 +9,6 @@
         <li>No tasks.</li>
         {% endfor %}
     </ul>
+    <!-- TQ: Why this particular syntax? And why within a string?-->
     <a href="{% url 'tasks:add'%}">Add a New Task</a>
 {% endblock %}
