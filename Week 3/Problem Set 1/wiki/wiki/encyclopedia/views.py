@@ -16,7 +16,7 @@ def entries(request, entry):
     if returned_entry := util.get_entry(entry):
         html_entry = markdown2.markdown(returned_entry)
         return render(request, 'encyclopedia/entry.html', {
-            "entry": entry,
+            "entry": entry.capitalize(),
             "html_entry": html_entry
         })
     else:
