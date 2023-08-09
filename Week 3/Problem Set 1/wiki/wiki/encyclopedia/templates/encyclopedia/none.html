@@ -1,0 +1,11 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    404
+{% endblock %}
+
+{% block body %}
+    <h1>No Entries Found</h1>
+    <p>There is no entry by the name of {{ missing_entry }}. Would you like to create one?</p>
+
+{% endblock %}

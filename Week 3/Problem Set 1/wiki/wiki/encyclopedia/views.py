@@ -17,6 +17,7 @@ def entries(request, entry):
         html_entry = markdown2.markdown(returned_entry)
         return render(request, html_entry)
     else:
-        # TODO: Fix this so it works with templates
         # TQ: If an entry name is typed with the / at the end, it all throws an error...
-        return HttpResponse(f"No {entry} entry found!")
+        return render(request, 'encyclopedia/none.html', {
+            "missing_entry": entry
+        })
