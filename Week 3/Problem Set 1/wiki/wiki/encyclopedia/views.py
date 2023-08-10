@@ -14,12 +14,14 @@ def index(request):
 def entries(request, entry):
     # TODO: Fix this so it works with templates
     if returned_entry := util.get_entry(entry):
+        print(f"entry found for {entry}")
         html_entry = markdown2.markdown(returned_entry)
         return render(request, 'encyclopedia/entry.html', {
             "entry": entry.capitalize(),
             "html_entry": html_entry
         })
     else:
+        print(f"entry not found for {entry}")
         # TQ: If an entry name is typed with the / at the end, it all throws an error...
         return render(request, 'encyclopedia/none.html', {
             "missing_entry": entry
