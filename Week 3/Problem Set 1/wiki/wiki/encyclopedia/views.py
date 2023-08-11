@@ -12,9 +12,7 @@ def index(request):
     })
 
 def entries(request, entry):
-    # TODO: Fix this so it works with templates
     if returned_entry := util.get_entry(entry):
-        print(f"entry found for {entry}")
         html_entry = markdown2.markdown(returned_entry)
         return render(request, 'encyclopedia/entry.html', {
             "entry": entry.capitalize(),
