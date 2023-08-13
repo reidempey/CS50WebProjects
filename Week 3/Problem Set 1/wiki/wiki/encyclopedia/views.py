@@ -1,6 +1,8 @@
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import render
+from django.urls import reverse
 import markdown2
+import random
 from . import util
 
 from . import util
@@ -24,3 +26,8 @@ def entries(request, entry):
         return render(request, 'encyclopedia/none.html', {
             "missing_entry": entry
         })
+
+def random_entry(request):
+    random_entry = random.choice(util.list_entries())
+    # print(random_entry)
+    return HttpResponseRedirect(f"{random_entry}")
