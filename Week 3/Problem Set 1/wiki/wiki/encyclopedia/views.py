@@ -31,3 +31,9 @@ def random_entry(request):
     random_entry = random.choice(util.list_entries())
     # print(random_entry)
     return HttpResponseRedirect(f"{random_entry}")
+
+# TODO: Finish search functionality
+# def search(request, query):
+#     if request.method == "POST":
+#         if query.lower() in (entry.lower() for entry in util.list_entries()):
+#             return HttpResponseRedirect(f"{query}")
