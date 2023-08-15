@@ -33,6 +33,7 @@ def random_entry(request):
     return HttpResponseRedirect(f"{random_entry}")
 
 # TODO: Finish search functionality
+# Be sure to include for exact matches and partial matches
 # def search(request, query):
 #     if request.method == "POST":
 #         if query.lower() in (entry.lower() for entry in util.list_entries()):
