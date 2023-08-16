@@ -8,7 +8,6 @@
     <h1>All Pages</h1>
 
     <ul>
-        <!-- Having the "wiki" in front doesn't solve the problem -->
         {% for entry in entries %}
             <li><a href="{{ entry }}">{{ entry }}</a></li>
         {% endfor %}

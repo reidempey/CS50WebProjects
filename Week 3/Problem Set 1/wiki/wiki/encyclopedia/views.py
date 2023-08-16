@@ -35,9 +35,9 @@ def random_entry(request):
 # TODO: Finish search functionality
 # Be sure to include for exact matches and partial matches
 def search(request):
-    print(request)
+    print(request.method())
     if request.method == "POST":
-        print(request.POST)
+        print(request.POST["q"])
         if request.POST.lower() in (entry.lower() for entry in util.list_entries()):
             return HttpResponseRedirect(f"{request.POST}")
     else:
