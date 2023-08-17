@@ -6,6 +6,17 @@
 
 {% block body %}
     <h1>Search</h1>
-    <p>There is no entry by the name of {{ query }}. Would you like to create one?</p>
 
+    {% if entries %}
+    <p>The following results were found which contain '{{ query }}':</p>
+
+    <ul>
+        {% for entry in entries %}
+            <li><a href="{{ entry }}">{{ entry }}</a></li>
+        {% endfor %}
+    </ul>
+
+    {% else %}
+    <p>There is no entry by the name of {{ query }}. Would you like to create one?</p>
+    {% endif %}
 {% endblock %}
