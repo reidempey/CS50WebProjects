@@ -55,3 +55,6 @@ def search(request):
                 return render(request, "encyclopedia/search.html", {
                     "query": search_string
                 })
+            
+def new(request):
+    return render(request, "encyclopedia/new.html")
