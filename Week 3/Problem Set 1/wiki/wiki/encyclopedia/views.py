@@ -35,26 +35,25 @@ def random_entry(request):
 # TODO: Finish search functionality
 # Be sure to include for exact matches and partial matches
 def search(request):
-    if request.method == "POST":
-        search_string = request.POST['q']
-        entry_list = util.list_entries()
-        # print(entry_list)
-        if search_string.lower() in (entry.lower() for entry in entry_list):
-            return HttpResponseRedirect(f"{search_string}")
+    search_string = request.GET['q']
+    entry_list = util.list_entries()
+    # print(entry_list)
+    if search_string.lower() in (entry.lower() for entry in entry_list):
+        return HttpResponseRedirect(f"{search_string}")
+    else:
+        results = []
+        for entry in entry_list:
+            if search_string.lower() in entry.lower():
+                results.append(entry)
+        if results:
+            return render(request, "encyclopedia/search.html", {
+                "query": search_string,
+                "entries": results
+            })
         else:
-            results = []
-            for entry in entry_list:
-                if search_string.lower() in entry.lower():
-                    results.append(entry)
-            if results:
-                return render(request, "encyclopedia/search.html", {
-                    "query": search_string,
-                    "entries": results
-                })
-            else:
-                return render(request, "encyclopedia/search.html", {
-                    "query": search_string
-                })
+            return render(request, "encyclopedia/search.html", {
+                "query": search_string
+            })
             
 def new(request):
     return render(request, "encyclopedia/new.html")
