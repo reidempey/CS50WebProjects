@@ -35,7 +35,7 @@ def random_entry(request):
 # TODO: Finish search functionality
 # Be sure to include for exact matches and partial matches
 def search(request):
-    search_string = request.GET['q']
+    search_string = request.GET.get('q')
     entry_list = util.list_entries()
     # print(entry_list)
     if search_string.lower() in (entry.lower() for entry in entry_list):
@@ -56,4 +56,21 @@ def search(request):
             })
             
 def new(request):
-    return render(request, "encyclopedia/new.html")
+    form_message = ""
+    form_title = ""
+    form_content = ""
+    if request.method == "POST":
+        form_title = request.POST.get("new_page_title")
+        form_content = request.POST.get("markdown")
+        if form_title.lower() in (entry.lower() for entry in util.list_entries()):
+            form_message = f"Sorry, an entry with the title {form_title} already exists. Please use a different title."
+        else:
+            with open(f"entries/{form_title}.md", "w") as file:
+                file.write(form_content)
+            form_message = f"An entry for {form_title} was successfully created!"
+
+    return render(request, "encyclopedia/new.html", {
+        "form_message": form_message,
+        "form_title": form_title,
+        "form_content": form_content
+    })

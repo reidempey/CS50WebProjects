@@ -5,19 +5,28 @@
 {% endblock %}
 
 {% block body %}
-    <h1>Create New Page</h1>
-    <div>
-        <form action="">
-            <label for="page_title">Page Title</label>
+            <h1>Create New Page</h1>
+            <div>
+                <form id="new_page_form" action="{% url 'new' %}" method="post">
+                    {% csrf_token %}
+                    <label for="new_page_title">New Page Title</label>
+                    <br>
+                    
+                    <input name="new_page_title" id="new_page_title" type="text" placeholder="New page title" value="{{ form_title }}">
+                    <br> <br>
+                    <label for="markdown">New Page Content</label>
+                    <br>
+                    <textarea name="markdown" id="markdown" cols="100" rows="4" placeholder="New page content (in Markdown)">{{ form_content }}</textarea>
+                    <br> <br>
+                    <input type="submit" value="Create New Page">
+                </form>
+            </div>
+
+            {% if form_message %}
             <br>
-            <input name="page_title" id="page_title" type="text" placeholder="New page title">
-            <br> <br>
-            <label for="markdown">Page Content</label>
-            <br>
-            <textarea name="markdown" id="markdown" cols="100" rows="4" placeholder="New page content (in Markdown)"></textarea>
-            <br> <br>
-            <input type="submit" value="Create New Page">
-        </form>
-    </div>
+            <div>
+                <h2>{{ form_message }}</h2>
+            </div>
+            {% endif %}
 
 {% endblock %}
