@@ -6,4 +6,6 @@
 
 {% block body %}
     {{ html_entry|safe }}
+    <br><br>
+    <button onclick="window.location.href='edit/{{entry}}';">Edit</button>
 {% endblock %}

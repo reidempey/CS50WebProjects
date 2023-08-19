@@ -74,3 +74,22 @@ def new(request):
         "form_title": form_title,
         "form_content": form_content
     })
+
+
+def edit(request):
+    return render(request, 'encyclopedia/edit.html', {
+        "entries": util.list_entries()
+    })
+
+def edit_entry(request, entry):
+    if returned_entry := util.get_entry(entry):
+        if request.method == "POST":
+            print(request.POST)
+            util.save_entry(entry, request.POST.get('markdown'))
+            return HttpResponseRedirect(reverse(entries, args=[entry]))
+        return render(request, 'encyclopedia/edit_entry.html', {
+            "entry_title": entry,
+            "form_content": returned_entry
+        })
+    else:
+        return HttpResponseRedirect(reverse("edit"))

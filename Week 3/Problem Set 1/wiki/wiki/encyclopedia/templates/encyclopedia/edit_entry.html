@@ -1,0 +1,22 @@
+{% extends "encyclopedia/layout.html" %}
+
+{% block title %}
+    Edit Entry
+{% endblock %}
+
+{% block body %}
+            <h1>Edit Entry: {{ entry_title }}</h1>
+            <div>
+                <form id="edit_entry_form" action="{{ entry_title }}" method="post">
+                    {% csrf_token %}
+                    <label for="markdown">New Page Content</label>
+                    <br>
+                    <textarea name="markdown" id="markdown" cols="100" rows="4" placeholder="New page content (in Markdown)">{{ form_content }}</textarea>
+                    <br> <br>
+                    <input type="submit" value="Save Edit">
+                    <input type="reset">
+                    <input type="button" onclick="window.location.href='/wiki/{{ entry_title }}';" value="Cancel" />
+                </form>
+            </div>
+
+{% endblock %}
