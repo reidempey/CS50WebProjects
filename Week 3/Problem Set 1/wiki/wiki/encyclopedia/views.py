@@ -14,6 +14,7 @@ def index(request):
     })
 
 def entries(request, entry):
+    # TODO: As is, this will return False if the entry has no text to display.
     if returned_entry := util.get_entry(entry):
         html_entry = markdown2.markdown(returned_entry)
         return render(request, 'encyclopedia/entry.html', {
